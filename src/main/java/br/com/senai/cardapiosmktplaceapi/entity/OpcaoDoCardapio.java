@@ -2,6 +2,7 @@ package br.com.senai.cardapiosmktplaceapi.entity;
 
 import java.math.BigDecimal;
 
+import br.com.senai.cardapiosmktplaceapi.entity.composite.OpcaoDoCardapioId;
 import br.com.senai.cardapiosmktplaceapi.entity.enums.Confirmacao;
 import br.com.senai.cardapiosmktplaceapi.entity.enums.Status;
 import jakarta.persistence.Column;
@@ -25,16 +26,17 @@ import lombok.EqualsAndHashCode;
 @Table(name = "opcoes_cardapios")
 @Entity(name = "OpcaoDoCardapio")
 public class OpcaoDoCardapio {
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_opcao")
-	@NotNull(message = "A opção é obrigatória")
-	private Opcao opcao;
 	
 	@EmbeddedId
 	@EqualsAndHashCode.Include
 	@NotNull(message = "O id da opção d cardápio é obrigatório")
-	private OpcaoDoCardapio id;
+	private OpcaoDoCardapioId id;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@MapsId("idDaOpcao")
+	@JoinColumn(name = "id_opcao")
+	@NotNull(message = "A opção é obrigatória")
+	private Opcao opcao;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("idDoCardapio")
