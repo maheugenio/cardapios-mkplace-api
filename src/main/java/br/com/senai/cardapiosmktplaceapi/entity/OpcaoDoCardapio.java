@@ -20,6 +20,7 @@ import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -32,18 +33,21 @@ public class OpcaoDoCardapio {
 	@NotNull(message = "O id da opção d cardápio é obrigatório")
 	private OpcaoDoCardapioId id;
 	
+	@ToString.Exclude
 	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("idDaOpcao")
 	@JoinColumn(name = "id_opcao")
 	@NotNull(message = "A opção é obrigatória")
 	private Opcao opcao;
 	
+	@ToString.Exclude
 	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("idDoCardapio")
 	@JoinColumn(name = "id_cardapio")
 	@NotNull(message = "O cardápio é obrigatório")
 	private Cardapio cardapio;
 	
+	@ToString.Exclude
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_secao")
 	@NotNull(message = "A seção é obrigatória")
