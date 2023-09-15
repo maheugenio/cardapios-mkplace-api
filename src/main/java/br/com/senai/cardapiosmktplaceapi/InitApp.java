@@ -1,16 +1,13 @@
 package br.com.senai.cardapiosmktplaceapi;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.domain.PageRequest;
 
-import br.com.senai.cardapiosmktplaceapi.entity.Categoria;
-import br.com.senai.cardapiosmktplaceapi.entity.Restaurante;
+import com.fasterxml.jackson.datatype.hibernate5.jakarta.Hibernate5JakartaModule;
+
 import br.com.senai.cardapiosmktplaceapi.repository.CategoriasRepository;
 import br.com.senai.cardapiosmktplaceapi.repository.RestaurantesRepository;
 
@@ -26,6 +23,11 @@ public class InitApp {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(InitApp.class, args);
+	}
+	
+	@Bean
+	public Hibernate5JakartaModule jsonHibernate5Module() {
+		return new Hibernate5JakartaModule();
 	}
 	
 	@Bean
